@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.frasergen.dao.User_smtpDao">
+	
+	
+	<sql id="key">
+		<trim suffixOverrides=",">
+			<if test="name!=null">
+				name,
+			</if>
+			<if test="user_id!=null">
+				user_id,
+			</if>
+			<if test="server!=null">
+				server,
+			</if>
+			<if test="password!=null">
+				password,
+			</if>
+			<if test="number!=null">
+				number,
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="value">
+		<trim suffixOverrides=",">
+			<if test="name!=null">
+				#{name},
+			</if>
+			<if test="user_id!=null">
+				#{user_id},
+			</if>
+			<if test="server!=null">
+				#{server},
+			</if>
+			<if test="password!=null">
+				#{password},
+			</if>
+			<if test="number!=null">
+				#{number},
+			</if>
+		</trim>
+	</sql>
+	
+	<select id="queryAll" resultType="com.frasergen.entity.User_smtp" >
+		select * from User_smtp
+	</select>
+	
+	<insert id="addData" parameterType="com.frasergen.entity.User_smtp" useGeneratedKeys="true" keyProperty="smtp_id">
+		insert into 
+		User_smtp
+		<include refid="key"></include>
+		values
+		<include refid="value"></include>
+	</insert>
+	
+	
+	<update id="updateData" parameterType="com.frasergen.entity.User_smtp">
+		update
+		User_smtp
+		<set>
+			<if test="name!=null">
+				name = #{name},
+			</if>
+			<if test="user_id!=null">
+				user_id = #{user_id},
+			</if>
+			<if test="server!=null">
+				server = #{server},
+			</if>
+			<if test="password!=null">
+				password = #{password},
+			</if>
+			<if test="number!=null">
+				number = #{number},
+			</if>
+		</set>
+		where
+		smtp_id=#{smtp_id}
+	</update>
+	
+	<select id="queryByUserId" parameterType="int" resultType="com.frasergen.entity.User_smtp">
+		select * from User_smtp
+		from
+		user_smtp
+		where
+		user_id=#{user_id}
+	</select>
+	
+	<select id="queryBySmtpId" parameterType="int" resultType="com.frasergen.entity.User_smtp">
+		select * from User_smtp
+		from
+		user_smtp
+		where
+		smtp_id=#{smtp_id}
+	</select>
+	
+	<delete id="deleteData" parameterType="int">
+		delete from
+		User_category
+		where
+		smtp_id=#{smtp_id}
+	</delete>
+</mapper>

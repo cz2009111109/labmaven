@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.frasergen.dao.UserDao">
+	
+	<sql id="key">
+		<trim suffixOverrides=",">
+			<if test="name!=null">
+				name,
+			</if>
+			<if test="status!=null">
+				status,
+			</if>
+			<if test="full_name!=null">
+				full_name,
+			</if>
+			<if test="number!=null">
+				number,
+			</if>
+			<if test="password!=null">
+				password,
+			</if>
+			<if test="sex!=null">
+				sex,
+			</if>
+			<if test="telephone!=null">
+				telephone,
+			</if>
+			<if test="birthday!=null">
+				birthday,
+			</if>
+			<if test="address!=null">
+				address,
+			</if>
+			<if test="qq!=null">
+				qq,
+			</if>
+			<if test="token_time!=null">
+				token_time,
+			</if>
+			<if test="token!=null">
+				token,
+			</if>
+			<if test="email!=null">
+				email,
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="value">
+		<trim suffixOverrides=",">
+			<if test="name!=null">
+				#{name},
+			</if>
+			<if test="status!=null">
+				#{status},
+			</if>
+			<if test="full_name!=null">
+				#{full_name},
+			</if>
+			<if test="number!=null">
+				#{number},
+			</if>
+			<if test="password!=null">
+				#{password},
+			</if>
+			<if test="sex!=null">
+				#{sex},
+			</if>
+			<if test="telephone!=null">
+				#{telephone},
+			</if>
+			<if test="birthday!=null">
+				#{birthday},
+			</if>
+			<if test="address!=null">
+				#{address},
+			</if>
+			<if test="qq!=null">
+				#{qq},
+			</if>
+			<if test="token_time!=null">
+				#{token_time},
+			</if>
+			<if test="token!=null">
+				#{token},
+			</if>
+			<if test="email!=null">
+				#{email},
+			</if>
+		</trim>
+	</sql>
+	
+	<insert id="addUser" parameterType="com.frasergen.User" useGeneratedKeys="true" keyProperty="user_id" >
+		insert into
+		user
+		(<include refid="key" />)
+		values
+		(<include refid="values"></include>)
+	</insert>
+	
+	<delete id="delUser" parameterType="int" >
+		delete from 
+		user
+		where
+		user_id=#{user_id}
+	</delete>
+	
+	<update id="updateUser" parameterType="com.frasergen.entity.User">
+		update
+		user
+		<set>
+			<if test="name!=null">
+				name = #{name},
+			</if>
+			<if test="status!=null">
+				status = #{status},
+			</if>
+			<if test="full_name!=null">
+				full_name = #{full_name},
+			</if>
+			<if test="number!=null">
+				number = #{number},
+			</if>
+			<if test="password!=null">
+				password = #{password},
+			</if>
+			<if test="sex!=null">
+				sex = #{sex},
+			</if>
+			<if test="!=null">
+				telephone = #{telephone},
+			</if>
+			<if test="!=null">
+				birthday = #{birthday},
+			</if>
+			<if test="!=null">
+				address = #{address},
+			</if>
+			<if test="!=null">
+				qq = #{qq},
+			</if>
+			<if test="!=null">
+				token_time = #{token_time},
+			</if>
+			<if test="!=null">
+				token = #{token},
+			</if>
+			<if test="!=null">
+				email = #{email}
+			</if>
+		</set>
+		where
+		user_id=#{user_id}
+	</update>
+	
+	<select id="queryAllUser" resultType="com.frasergen.entity.User" >
+		select 
+			address,birthday,email,full_name,name,password,qq,sex,state,telephone,token,token_time,user_id
+		from user
+	</select>
+	
+	<select id="queryUserById"  resultType="com.frasergen.entity.User" >
+		select 
+			address,birthday,email,full_name,name,password,qq,sex,state,telephone,token,token_time,user_id
+		from user
+		where
+		user_id=#{user_id}
+	</select>
+	
+	<select id="querylikeUser" >
+		select
+			address,birthday,email,full_name,name,password,qq,sex,state,telephone,token,token_time,user_id
+		from user
+		<where>
+			<if test="name!='' and name !=null">
+				name like #{name}
+			</if>
+			<if test="email!='' and email!=null">
+				and email like #{email}
+			</if>
+		</where>
+	</select>
+</mapper>

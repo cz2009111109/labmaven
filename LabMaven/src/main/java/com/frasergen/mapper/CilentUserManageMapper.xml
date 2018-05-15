@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.frasergen.dao.CilentUserManageDao">
+	
+	
+	
+	<!-- 根据登录名查询User信息 -->
+	<select id="queryUsesrByName" parameterType="java.lang.String" resultMap="com.frasergen.entity.User">
+		select * from 'user'
+		where name=#{name}
+	</select>
+	
+	
+</mapper>

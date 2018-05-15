@@ -5,7 +5,7 @@
 	
 	<sql id="key">
 		<trim suffixOverrides=",">
-			<if test="">
+			<if test="!=null">
 				
 			</if>
 		</trim>

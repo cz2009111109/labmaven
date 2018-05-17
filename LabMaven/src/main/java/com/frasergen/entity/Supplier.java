@@ -2,9 +2,9 @@ package com.frasergen.entity;
 
 public class Supplier {
 	private int supplierid;
-	private String company;
-	private String name;
-	private String qq;
+	private String company; //供货公司
+	private String name; //联系人
+	private String qq; //联系人QQ
 	private String email;
 	private String phone;
 	private String address;

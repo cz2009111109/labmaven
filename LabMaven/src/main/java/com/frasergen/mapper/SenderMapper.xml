@@ -3,5 +3,91 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.frasergen.dao.RoleDao">
 	
+	<sql id="key">
+		<trim suffixOverrides=",">
+			<if test="name!=null">
+				name,
+			</if>
+			<if test="phone!=null">
+				phone,
+			</if>
+			<if test="email!=null">
+				email,
+			</if>
+		</trim>
+	</sql>
 	
+	<sql id="value">
+		<trim suffixOverrides=",">
+			<if test="name!=null">
+				#{name},
+			</if>
+			<if test="phone!=null">
+				#{phone},
+			</if>
+			<if test="email!=null">
+				#{email},
+			</if>
+		</trim>
+	</sql>
+	
+	<insert id="addData">
+		insert into
+		sender
+		<include refid="key"></include>
+		values
+		<include refid="value"></include>
+	</insert>
+	
+	<update id="updateData" parameterType="com.frasergen.entity.Sender">
+		update
+		sender
+		<set>
+			<trim suffixOverrides=",">
+				<if test="name!=null">
+					name=#{name},
+				</if>
+				<if test="phone!=null">
+					phone=#{phone},
+				</if>
+				<if test="email!=null">
+					email=#{email},
+				</if>
+			</trim>
+		</set>
+		where
+		senderid=#{senderid}
+	</update>
+	
+	<delete id="deleteData" parameterType="int">
+		delete from 
+		sender
+		where
+		senderid=#{senderid}
+	</delete>
+	
+	<select id="queryAll" resultType="com.frasergen.entity.Sender">
+		select *
+		from
+		sender
+	</select>
+	
+	<select id="queryById" parameterType="int" resultType="com.frasergen.entity.Sender">
+		select *
+		from
+		sender
+		where
+		senderid=#{senderid}
+	</select>
+	
+	<select id="querylike" parameterType="map" resultType="com.frasergen.entity.Sender">
+		select *
+		from
+		sender
+		<where>
+			<if test="name!='' and name!=null">
+				name like #{name}
+			</if>
+		</where>
+	</select>
 </mapper>

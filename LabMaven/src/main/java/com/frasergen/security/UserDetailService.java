@@ -6,13 +6,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.frasergen.dao.CilentUserManageDao;
+import com.frasergen.dao.UserDao;
 
 @Service(value = "userDetailService")
 public class UserDetailService implements UserDetailsService{
 
 	@Autowired
-	CilentUserManageDao cDao;
+	UserDao userDao;
 	
 	@Override
 	public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {

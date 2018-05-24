@@ -19,8 +19,8 @@
 			login-processing-url="/login"
 			username-parameter="account"
 			password-parameter="password"
-			default-target-url="/WEBROOT/index.html"
-			authentication-failure-url="/WEBROOT/login.html"
+			default-target-url="/login.html"
+			authentication-failure-url="/login.html"
 			always-use-default-target="true" />
 		<http-basic />
 

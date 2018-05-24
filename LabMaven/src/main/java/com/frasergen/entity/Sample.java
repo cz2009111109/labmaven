@@ -4,6 +4,7 @@ public class Sample {
 	private int sampleid;
 	private String sampleType; //样品类型
 	private String sampleState;//采样前状态
+	private int senderid; //寄样人
 	private String name;//样本名称
 	private String serialnumber;//样本编号
 	private String Species; //物种
@@ -20,13 +21,15 @@ public class Sample {
 	public Sample() {
 		super();
 	}
-	public Sample(int sampleid, String sampleType, String sampleState, String name, String serialnumber, String species,
-			String partname, String remark, String extractdescription, String nanodrop, String qubit, String dNAvolume,
-			String dNAdensity, String rNAdensity, String rNAvolume, double rIN) {
+	
+	public Sample(int sampleid, String sampleType, String sampleState, int senderid, String name, String serialnumber,
+			String species, String partname, String remark, String extractdescription, String nanodrop, String qubit,
+			String dNAvolume, String dNAdensity, String rNAdensity, String rNAvolume, double rIN) {
 		super();
 		this.sampleid = sampleid;
 		this.sampleType = sampleType;
 		this.sampleState = sampleState;
+		this.senderid = senderid;
 		this.name = name;
 		this.serialnumber = serialnumber;
 		Species = species;
@@ -41,6 +44,7 @@ public class Sample {
 		RNAvolume = rNAvolume;
 		RIN = rIN;
 	}
+
 	public int getSampleid() {
 		return sampleid;
 	}
@@ -158,9 +162,13 @@ public class Sample {
 		result = prime * result + ((sampleState == null) ? 0 : sampleState.hashCode());
 		result = prime * result + ((sampleType == null) ? 0 : sampleType.hashCode());
 		result = prime * result + sampleid;
+		result = prime * result + senderid;
 		result = prime * result + ((serialnumber == null) ? 0 : serialnumber.hashCode());
 		return result;
 	}
+
+	
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -239,6 +247,8 @@ public class Sample {
 			return false;
 		if (sampleid != other.sampleid)
 			return false;
+		if (senderid != other.senderid)
+			return false;
 		if (serialnumber == null) {
 			if (other.serialnumber != null)
 				return false;
@@ -249,10 +259,23 @@ public class Sample {
 	@Override
 	public String toString() {
 		return "Sample [sampleid=" + sampleid + ", sampleType=" + sampleType + ", sampleState=" + sampleState
-				+ ", name=" + name + ", serialnumber=" + serialnumber + ", Species=" + Species + ", partname="
-				+ partname + ", remark=" + remark + ", extractdescription=" + extractdescription + ", Nanodrop="
-				+ Nanodrop + ", Qubit=" + Qubit + ", DNAvolume=" + DNAvolume + ", DNAdensity=" + DNAdensity
-				+ ", RNAdensity=" + RNAdensity + ", RNAvolume=" + RNAvolume + ", RIN=" + RIN + "]";
+				+ ", senderid=" + senderid + ", name=" + name + ", serialnumber=" + serialnumber + ", Species="
+				+ Species + ", partname=" + partname + ", remark=" + remark + ", extractdescription="
+				+ extractdescription + ", Nanodrop=" + Nanodrop + ", Qubit=" + Qubit + ", DNAvolume=" + DNAvolume
+				+ ", DNAdensity=" + DNAdensity + ", RNAdensity=" + RNAdensity + ", RNAvolume=" + RNAvolume + ", RIN="
+				+ RIN + "]";
 	}
-	
+	/**
+	 * @return the senderid
+	 */
+	public int getSenderid() {
+		return senderid;
+	}
+	/**
+	 * @param senderid the senderid to set
+	 */
+	public void setSenderid(int senderid) {
+		this.senderid = senderid;
+	}
+
 }

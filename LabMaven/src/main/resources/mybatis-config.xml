@@ -3,8 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<!-- 引入db.properties文件 <properties resource="db.properties"> <property name="driver" 
-		value="oracle.jdbc.driver.OracleDriver"/> </properties> -->
+	<!-- 引入db.properties文件 
+	<properties resource="db.properties"> 
+		<property name="driver"  value="oracle.jdbc.driver.OracleDriver"/> 
+	</properties> 
+	-->
 	<!-- 开启延迟加载 -->
 	<settings>
 		<setting name="lazyLoadingEnabled" value="true" />

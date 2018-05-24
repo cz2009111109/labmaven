@@ -60,21 +60,23 @@
 		update
 		User_smtp
 		<set>
-			<if test="name!=null">
-				name = #{name},
-			</if>
-			<if test="user_id!=null">
-				user_id = #{user_id},
-			</if>
-			<if test="server!=null">
-				server = #{server},
-			</if>
-			<if test="password!=null">
-				password = #{password},
-			</if>
-			<if test="number!=null">
-				number = #{number},
-			</if>
+			<trim suffixOverrides=",">
+				<if test="name!=null">
+					name = #{name},
+				</if>
+				<if test="user_id!=null">
+					user_id = #{user_id},
+				</if>
+				<if test="server!=null">
+					server = #{server},
+				</if>
+				<if test="password!=null">
+					password = #{password},
+				</if>
+				<if test="number!=null">
+					number = #{number},
+				</if>
+			</trim>
 		</set>
 		where
 		smtp_id=#{smtp_id}

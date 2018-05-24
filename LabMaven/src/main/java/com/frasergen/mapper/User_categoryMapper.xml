@@ -45,12 +45,14 @@
 		update
 		user_category
 		<set>
-			<if test="name!=null">
-				name,
-			</if>
-			<if test="description!=null">
-				description,
-			</if>
+			<trim suffixOverrides=",">
+				<if test="name!=null">
+					name,
+				</if>
+				<if test="description!=null">
+					description,
+				</if>
+			</trim>
 		</set>
 		where
 		category_id=#{category_id}

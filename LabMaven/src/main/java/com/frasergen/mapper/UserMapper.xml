@@ -91,7 +91,7 @@
 		</trim>
 	</sql>
 	
-	<insert id="addUser" parameterType="com.frasergen.User" useGeneratedKeys="true" keyProperty="user_id" >
+	<insert id="addUser" parameterType="com.frasergen.entity.User" useGeneratedKeys="true" keyProperty="user_id" >
 		insert into
 		user
 		(<include refid="key" />)
@@ -110,45 +110,47 @@
 		update
 		user
 		<set>
-			<if test="name!=null">
-				name = #{name},
-			</if>
-			<if test="status!=null">
-				status = #{status},
-			</if>
-			<if test="full_name!=null">
-				full_name = #{full_name},
-			</if>
-			<if test="number!=null">
-				number = #{number},
-			</if>
-			<if test="password!=null">
-				password = #{password},
-			</if>
-			<if test="sex!=null">
-				sex = #{sex},
-			</if>
-			<if test="!=null">
-				telephone = #{telephone},
-			</if>
-			<if test="!=null">
-				birthday = #{birthday},
-			</if>
-			<if test="!=null">
-				address = #{address},
-			</if>
-			<if test="!=null">
-				qq = #{qq},
-			</if>
-			<if test="!=null">
-				token_time = #{token_time},
-			</if>
-			<if test="!=null">
-				token = #{token},
-			</if>
-			<if test="!=null">
-				email = #{email}
-			</if>
+			<trim suffixOverrides=",">
+				<if test="name!=null">
+					name = #{name},
+				</if>
+				<if test="status!=null">
+					status = #{status},
+				</if>
+				<if test="full_name!=null">
+					full_name = #{full_name},
+				</if>
+				<if test="number!=null">
+					number = #{number},
+				</if>
+				<if test="password!=null">
+					password = #{password},
+				</if>
+				<if test="sex!=null">
+					sex = #{sex},
+				</if>
+				<if test="!=null">
+					telephone = #{telephone},
+				</if>
+				<if test="!=null">
+					birthday = #{birthday},
+				</if>
+				<if test="!=null">
+					address = #{address},
+				</if>
+				<if test="!=null">
+					qq = #{qq},
+				</if>
+				<if test="!=null">
+					token_time = #{token_time},
+				</if>
+				<if test="!=null">
+					token = #{token},
+				</if>
+				<if test="!=null">
+					email = #{email}
+				</if>
+			</trim>
 		</set>
 		where
 		user_id=#{user_id}
@@ -168,7 +170,7 @@
 		user_id=#{user_id}
 	</select>
 	
-	<select id="querylikeUser" >
+	<select id="querylikeUser" parameterType="map" resultType="com.frasergen.entity.User" >
 		select
 			address,birthday,email,full_name,name,password,qq,sex,state,telephone,token,token_time,user_id
 		from user

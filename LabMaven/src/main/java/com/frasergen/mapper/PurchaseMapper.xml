@@ -2,6 +2,184 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.frasergen.dao.PurchaseDao">
+	<!--  申请单-->
+	
+	<sql id="key">
+		<trim suffixOverrides=",">
+			<if test="purchaseid!=null">
+				purchaseid,
+			</if>
+			<if test="department_id!=null">
+				department_id,
+			</if>
+			<if test="userid!=null">
+				userid,
+			</if>
+			<if test="applytime!=null">
+				applytime,
+			</if>
+			<if test="goodsid!=null">
+				goodsid,
+			</if>
+			
+			<if test="number!=null">
+				number,
+			</if>
+			<if test="unitid!=null">
+				unitid,
+			</if>
+			<if test="catalogprice!=null">
+				catalogprice,
+			</if>
+			<if test="actualprice!=null">
+				actualprice,
+			</if>
+			<if test="function!=null">
+				function,
+			</if>
+			<if test="remark!=null">
+				remark,
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="value">
+		<trim suffixOverrides=",">
+			<if test="purchaseid!=null">
+				#{purchaseid},
+			</if>
+			<if test="department_id!=null">
+				#{department_id},
+			</if>
+			<if test="userid!=null">
+				#{userid},
+			</if>
+			<if test="applytime!=null">
+				#{applytime},
+			</if>
+			<if test="goodsid!=null">
+				#{goodsid},
+			</if>
+			
+			<if test="number!=null">
+				#{number},
+			</if>
+			<if test="unitid!=null">
+				#{unitid},
+			</if>
+			<if test="catalogprice!=null">
+				#{catalogprice},
+			</if>
+			<if test="actualprice!=null">
+				#{actualprice},
+			</if>
+			<if test="function!=null">
+				#{function},
+			</if>
+			<if test="remark!=null">
+				#{remark},
+			</if>
+		</trim>
+	</sql>
+	
+	<insert id="addData" parameterType="com.frasergen.entity.Purchase">
+		insert into
+		purchase
+		<include refid="key"></include>
+		values
+		<include refid="value"></include>
+	</insert>
 	
 	
+	<update id="updateData" parameterType="com.frasergen.entity.Purchase">
+		udpate
+		purchase
+		<set>
+			<trim suffixOverrides=",">
+				<if test="purchaseid!=null">
+					purchaseid = #{purchaseid},
+				</if>
+				<if test="department_id!=null">
+					department_id = #{department_id},
+				</if>
+				<if test="userid!=null">
+					userid = #{userid},
+				</if>
+				<if test="applytime!=null">
+					applytime = #{applytime},
+				</if>
+				<if test="goodsid!=null">
+					goodsid = #{goodsid},
+				</if>
+				
+				<if test="number!=null">
+					number = #{number},
+				</if>
+				<if test="unitid!=null">
+					unitid = #{unitid},
+				</if>
+				<if test="catalogprice!=null">
+					catalogprice = #{catalogprice},
+				</if>
+				<if test="actualprice!=null">
+					actualprice = #{actualprice},
+				</if>
+				<if test="function!=null">
+					function = #{function},
+				</if>
+				<if test="remark!=null">
+					remark = #{remark},
+				</if>
+			</trim>
+			where
+			id=#{id}
+		</set>
+	</update>
+	
+	<delete id="deleteData" parameterType="int">
+		delete from
+		purchase
+		<where>
+			id=#{id}
+		</where>
+	</delete>
+	
+	<select id="queryAll" resultType="com.frasergen.entity.Purchase">
+		select *
+		from
+		purchase
+	</select>
+	
+	<select id="queryById" parameterType="int" resultType="com.frasergen.entity.Purchase">
+		select * 
+		from
+		purchase
+		where
+		id=#{id}
+	</select>
+	
+	<select id="queryLike" parameterType="map" resultType="com.frasergen.entity.Purchase">
+		select * 
+		from
+		purchase
+		<where>
+			<trim prefixOverrides="and">
+				<if test="userid!=null and userid!=''">
+					userid=#{userid}
+				</if>
+				<if test="department_id!=null and department_id!=''">
+					and department_id=#{department_id}
+				</if>
+				<if test="purchaseid!=null  and   purchaseid!=''">
+					and purchaseid=#{purchaseid}
+				</if>
+				<if test=" mintime!=null  and  mintime!='' " >
+					and applytime  &lt;= #{mintime}
+				</if>
+				<if test=" maxtime!=null and maxtime !=''">
+					and applytime  &gt;= #{maxtime}
+				</if>
+			</trim>
+		</where> 
+	</select>
 </mapper>

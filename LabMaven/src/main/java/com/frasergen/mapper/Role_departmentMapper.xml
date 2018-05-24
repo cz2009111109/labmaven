@@ -3,5 +3,90 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.frasergen.dao.Role_departmentDao">
 	
+	<sql id="key">
+		<trim suffixOverrides=",">
+			<if test="charge_position!=null">
+				charge_position,
+			</if>
+			<if test="description!=null">
+				description,
+			</if>
+			<if test="name!=null">
+				name,
+			</if>
+			<if test="parent_id!=null">
+				parent_id,
+			</if>
+		</trim>
+	</sql>
 	
+	<sql id="value">
+		<trim suffixOverrides=",">
+			<if test="charge_position!=null">
+				#{charge_position},
+			</if>
+			<if test="description!=null">
+				#{description},
+			</if>
+			<if test="name!=null">
+				#{name},
+			</if>
+			<if test="parent_id!=null">
+				#{parent_id},
+			</if>
+		</trim>
+	</sql>
+	
+	<insert id="addData" parameterType="com.frasergen.entity.Role_department" 
+	useGeneratedKeys="true" keyProperty="department_id">
+		insert into 
+		role_department
+		<include refid="key"></include>
+		values
+		<include refid="value"></include>
+	</insert>
+	
+	<update id="updateData"  parameterType="com.frasergen.entity.Role_department" >
+		update
+		role_department
+		<set>
+			<trim suffixOverrides=",">
+				<if test="charge_position!=null">
+					charge_position = #{charge_position},
+				</if>
+				<if test="description!=null">
+					description = #{description},
+				</if>
+				<if test="name!=null">
+					name = #{name},
+				</if>
+				<if test="parent_id!=null">
+					parent_id = #{parent_id},
+				</if>
+			</trim>
+		</set>
+		where
+		department_id=#{department_id}
+	</update>
+	
+	<delete id="deleteData" parameterType="int">
+		delete from
+		role_department
+		where
+		department_id=#{department_id}
+	</delete>
+	
+	<select id="queryAll" resultType="com.frasergen.entity.Role_department">
+		select * 
+		from
+		role_department
+	</select>
+	
+	<select id="queryById" parameterType="int" resultType="com.frasergen.entity.Role_department">
+		select * 
+		from
+		role_department
+		where
+		department_id=#{department_id}
+	</select>
 </mapper>

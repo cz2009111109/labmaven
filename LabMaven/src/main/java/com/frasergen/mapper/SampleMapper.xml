@@ -3,8 +3,227 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.frasergen.dao.SampleDao">
 	
+	
 	<sql id="key">
-		
+		<trim suffixOverrides=",">
+			<if test="sampleType!=null">
+				sampleType,
+			</if>
+			<if test="sampleState!=null">
+				sampleState,
+			</if>
+			<if test="senderid!=null">
+				senderid,
+			</if>
+			<if test="name!=null">
+				name,
+			</if>
+			<if test="serialnumber!=null">
+				serialnumber,
+			</if>
+			<if test="Species!=null">
+				Species,
+			</if>
+			<if test="partname!=null">
+				partname,
+			</if>
+			<if test="remark!=null">
+				remark,
+			</if>
+			<if test="extractdescription!=null">
+				extractdescription,
+			</if>
+			<if test="Nanodrop!=null">
+				Nanodrop,
+			</if>
+			<if test="Qubit!=null">
+				Qubit,
+			</if>
+			<if test="DNAvolume!=null">
+				DNAvolume,
+			</if>
+			<if test="DNAdensity!=null">
+				DNAdensity,
+			</if>
+			<if test="RNAdensity!=null">
+				RNAdensity,
+			</if>
+			<if test="RNAvolume!=null">
+				RNAvolume,
+			</if>
+			<if test="RIN!=null">
+				RIN,
+			</if>
+		</trim>
 	</sql>
 	
+	<sql id="value">
+		<trim suffixOverrides=",">
+			<if test="sampleType!=null">
+				#{sampleType},
+			</if>
+			<if test="sampleState!=null">
+				#{sampleState},
+			</if>
+			<if test="senderid!=null">
+				#{senderid},
+			</if>
+			<if test="name!=null">
+				#{name},
+			</if>
+			<if test="serialnumber!=null">
+				#{serialnumber},
+			</if>
+			<if test="Species!=null">
+				#{Species},
+			</if>
+			<if test="partname!=null">
+				#{partname},
+			</if>
+			<if test="remark!=null">
+				#{remark},
+			</if>
+			<if test="extractdescription!=null">
+				#{extractdescription},
+			</if>
+			<if test="Nanodrop!=null">
+				#{Nanodrop},
+			</if>
+			<if test="Qubit!=null">
+				#{Qubit},
+			</if>
+			<if test="DNAvolume!=null">
+				#{DNAvolume},
+			</if>
+			<if test="DNAdensity!=null">
+				#{DNAdensity},
+			</if>
+			<if test="RNAdensity!=null">
+				#{RNAdensity},
+			</if>
+			<if test="RNAvolume!=null">
+				#{RNAvolume},
+			</if>
+			<if test="RIN!=null">
+				#{RIN},
+			</if>
+		</trim>
+	</sql>
+	
+	<insert id="addData" parameterType="com.frasergen.entity.Sample" 
+	useGeneratedKeys="true" keyProperty="sample_id">
+		insert into
+		sample
+		<include refid="key"></include>
+		values
+		<include refid="value"></include>
+	</insert>
+	
+	<update id="updateData" parameterType="com.frasergen.entity.Sample">
+		update
+		sample
+		<set>
+			<trim suffixOverrides=",">
+				<if test="sampleType!=null">
+					sampleType=#{sampleType},
+				</if>
+				<if test="sampleState!=null">
+					sampleState=#{sampleState},
+				</if>
+				<if test="senderid!=null">
+					senderid=#{senderid},
+				</if>
+				<if test="name!=null">
+					name=#{name},
+				</if>
+				<if test="serialnumber!=null">
+					serialnumber=#{serialnumber},
+				</if>
+				<if test="Species!=null">
+					Species=#{Species},
+				</if>
+				<if test="partname!=null">
+					partname=#{partname},
+				</if>
+				<if test="remark!=null">
+					remark=#{remark},
+				</if>
+				<if test="extractdescription!=null">
+					extractdescription=#{extractdescription},
+				</if>
+				<if test="Nanodrop!=null">
+					Nanodrop=#{Nanodrop},
+				</if>
+				<if test="Qubit!=null">
+					Qubit=#{Qubit},
+				</if>
+				<if test="DNAvolume!=null">
+					DNAvolume=#{DNAvolume},
+				</if>
+				<if test="DNAdensity!=null">
+					DNAdensity=#{DNAdensity},
+				</if>
+				<if test="RNAdensity!=null">
+					RNAdensity = #{RNAdensity},
+				</if>
+				<if test="RNAvolume!=null">
+					RNAvolume = #{RNAvolume},
+				</if>
+				<if test="RIN!=null">
+					RIN = #{RIN},
+				</if>
+			</trim>
+		</set>
+		where
+		sampleid=#{sampleid}
+	</update>
+	
+	<delete id="deleteData" parameterType="int">
+		delete from 
+		sample
+		where
+		sampleid=#{sampleid}
+	</delete>
+	
+	<select id="queryAll" resultMap="com.frasergen.entity.Sample">
+		select * 
+		from
+		sample  
+	</select>
+	
+	<select id="queryById" parameterType="int" resultMap="com.frasergen.entity.Sample">
+		select
+		*
+		from
+		sample 
+		where
+		sampleid=#{sampleid}
+	</select>
+	
+	<select id="queryLike" parameterType="map" resultMap="com.frasergen.entity.Sample">
+		select
+		*
+		from
+		sample
+		<where>
+			<trim prefixOverrides="and" >
+				<if test="name !=null and name !=''">
+					name like CONCAT('%','#{name}','%')
+				</if>
+				<if test="sampleType !=null and sampleType !=''">
+					and sampleType like CONCAT('%','#{sampleType}','%')
+				</if>
+				<if test="partname !=null and partname !=''">
+					and partname like CONCAT('%','#{partname}','%')
+				</if>
+				<if test="Species !=null and Species !=''">
+					and Species like CONCAT('%','#{Species}','%')
+				</if>
+				<if test="sampleState !=null and sampleState !=''">
+					and sampleState like CONCAT('%','#{sampleState}','%')
+				</if>
+			</trim>
+		</where>
+		
+	</select>
 </mapper>

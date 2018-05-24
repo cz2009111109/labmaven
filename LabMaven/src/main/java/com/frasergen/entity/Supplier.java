@@ -1,14 +1,14 @@
 package com.frasergen.entity;
 
 public class Supplier {
-	private int supplierid;
+	private int supplierid;//供应商id
 	private String company; //供货公司
 	private String name; //联系人
 	private String qq; //联系人QQ
-	private String email;
-	private String phone;
-	private String address;
-	private String weixin;
+	private String email;//联系人邮箱
+	private String phone;//联系人手机
+	private String address;//联系人地址
+	private String weixin;//联系人微信
 	public Supplier() {
 		super();
 	}

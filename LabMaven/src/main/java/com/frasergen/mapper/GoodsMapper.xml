@@ -3,5 +3,128 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.frasergen.dao.GoodsDao">
 	
+	<sql id="key">
+		<trim suffixOverrides=",">
+			<if test="name !=null">
+				name,
+			</if>
+			<if test="brands !=null">
+				brands,
+			</if>
+			<if test="supplierid !=null">
+				supplierid,
+			</if>
+			<if test="function !=null">
+				function,
+			</if>
+			<if test=" stocknumber !=null">
+				stocknumber,
+			</if>
+			<if test="unitid !=null">
+				unitid,
+			</if>
+		</trim>
+	</sql>
 	
+	<sql id="value">
+		<trim suffixOverrides=",">
+			<if test="name !=null">
+				#{name},
+			</if>
+			<if test="brands !=null">
+				#{brands},
+			</if>
+			<if test="supplierid !=null">
+				#{supplierid},
+			</if>
+			<if test="function !=null">
+				#{function},
+			</if>
+			<if test=" stocknumber !=null">
+				#{stocknumber},
+			</if>
+			<if test="unitid !=null">
+				#{unitid},
+			</if>
+		</trim>
+	</sql>
+	
+	<insert id="addData" parameterType="com.frasergen.entity.Goods"
+	useGeneratedKeys="true" keyProperty="goodsid">
+		insert into
+		goods
+		<include refid="key"></include>
+		values
+		<include refid="value"></include>
+	</insert>
+	
+	<update id="updateData" parameterType="com.frasergen.entity.Goods">
+		update
+		goods
+		<set>
+			<trim suffixOverrides=",">
+				<if test="name !=null">
+					name = #{name},
+				</if>
+				<if test="brands !=null">
+					brands = #{brands},
+				</if>
+				<if test="supplierid !=null">
+					supplierid = #{supplierid},
+				</if>
+				<if test="function !=null">
+					function = #{function},
+				</if>
+				<if test=" stocknumber !=null">
+					stocknumber = #{stocknumber},
+				</if>
+				<if test="unitid !=null">
+					unitid = #{unitid},
+				</if>
+			</trim>
+		</set>
+		where
+		goodsid=#{goodsid}
+	</update>
+	
+	<delete id="deleteData" parameterType="int" > 
+		delete
+		from
+		goods
+		where
+		goodsid=#{goodsid}
+	</delete>
+	
+	<select id="queryAll" resultType="com.frasergen.entity.Goods">
+		select *
+		from 
+		goods
+	</select>
+	
+	<select id="queryById" parameterType="int" resultType="com.frasergen.entity.Goods">
+		select *
+		from
+		goods
+		where
+		goodsid=#{goodsid}
+	</select>
+	
+	<select id="queryLike" parameterType="map" resultType="com.frasergen.entity.Goods">
+		select *
+		from 
+		goods
+		<where>
+			<trim prefixOverrides="and" suffixOverrides="">
+				<if test="name !=null and name !=''">
+					name like CONCAT('%','#{name}','%')
+				</if>
+				<if test=" Brands !=null and  Brands !=''">
+					and Brands like CONCAT('%','#{Brands}','%')
+				</if>
+				<if test=" function !=null and  function !=''">
+					and function like CONCAT('%','#{function}','%')
+				</if>
+			</trim>
+		</where>
+	</select>
 </mapper>

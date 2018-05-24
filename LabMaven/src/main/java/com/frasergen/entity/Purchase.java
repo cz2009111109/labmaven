@@ -1,28 +1,28 @@
 package com.frasergen.entity;
 
-import java.util.Date;
 
 public class Purchase {
-	private int id;
-	private int purchaseid;
-	private int userid;
-	private Date applytime;
-	private int goodsid;
-	private double number;
-	private int unitid;
-	private double catalogprice;
-	private double actualprice;
-	private String function;
-	private String remark;
+	private int id; //主键
+	private int purchaseid;//申请单号
+	private int department_id;//申购部门
+	private int userid;//申请人
+	private String applytime;//申购日期
+	private int goodsid;//物品id
+	private double number;//数量
+	private int unitid;//单位
+	private double catalogprice;//目录价格
+	private double actualprice;//采购价格
+	private String function;//用途
+	private String remark;//备注
 	public Purchase() {
 		super();
 	}
-	
-	public Purchase(int id, int purchaseid, int userid, Date applytime, int goodsid, double number, int unitid,
-			double catalogprice, double actualprice, String function, String remark) {
+	public Purchase(int id, int purchaseid, int department_id, int userid, String applytime, int goodsid, double number,
+			int unitid, double catalogprice, double actualprice, String function, String remark) {
 		super();
 		this.id = id;
 		this.purchaseid = purchaseid;
+		this.department_id = department_id;
 		this.userid = userid;
 		this.applytime = applytime;
 		this.goodsid = goodsid;
@@ -33,7 +33,6 @@ public class Purchase {
 		this.function = function;
 		this.remark = remark;
 	}
-
 	public int getId() {
 		return id;
 	}
@@ -46,16 +45,22 @@ public class Purchase {
 	public void setPurchaseid(int purchaseid) {
 		this.purchaseid = purchaseid;
 	}
+	public int getdepartment_id() {
+		return department_id;
+	}
+	public void setdepartment_id(int department_id) {
+		this.department_id = department_id;
+	}
 	public int getUserid() {
 		return userid;
 	}
 	public void setUserid(int userid) {
 		this.userid = userid;
 	}
-	public Date getApplytime() {
+	public String getApplytime() {
 		return applytime;
 	}
-	public void setApplytime(Date applytime) {
+	public void setApplytime(String applytime) {
 		this.applytime = applytime;
 	}
 	public int getGoodsid() {
@@ -69,6 +74,12 @@ public class Purchase {
 	}
 	public void setNumber(double number) {
 		this.number = number;
+	}
+	public int getUnitid() {
+		return unitid;
+	}
+	public void setUnitid(int unitid) {
+		this.unitid = unitid;
 	}
 	public double getCatalogprice() {
 		return catalogprice;
@@ -94,13 +105,6 @@ public class Purchase {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	public int getUnitid() {
-		return unitid;
-	}
-	public void setUnitid(int unitid) {
-		this.unitid = unitid;
-	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -111,6 +115,7 @@ public class Purchase {
 		result = prime * result + ((applytime == null) ? 0 : applytime.hashCode());
 		temp = Double.doubleToLongBits(catalogprice);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + department_id;
 		result = prime * result + ((function == null) ? 0 : function.hashCode());
 		result = prime * result + goodsid;
 		result = prime * result + id;
@@ -140,6 +145,8 @@ public class Purchase {
 			return false;
 		if (Double.doubleToLongBits(catalogprice) != Double.doubleToLongBits(other.catalogprice))
 			return false;
+		if (department_id != other.department_id)
+			return false;
 		if (function == null) {
 			if (other.function != null)
 				return false;
@@ -166,9 +173,11 @@ public class Purchase {
 	}
 	@Override
 	public String toString() {
-		return "Purchase [id=" + id + ", purchaseid=" + purchaseid + ", userid=" + userid + ", applytime=" + applytime
-				+ ", goodsid=" + goodsid + ", number=" + number + ", unitid=" + unitid + ", catalogprice="
-				+ catalogprice + ", actualprice=" + actualprice + ", function=" + function + ", remark=" + remark + "]";
+		return "Purchase [id=" + id + ", purchaseid=" + purchaseid + ", department_id=" + department_id + ", userid="
+				+ userid + ", applytime=" + applytime + ", goodsid=" + goodsid + ", number=" + number + ", unitid="
+				+ unitid + ", catalogprice=" + catalogprice + ", actualprice=" + actualprice + ", function=" + function
+				+ ", remark=" + remark + "]";
 	}
+	
 	
 }

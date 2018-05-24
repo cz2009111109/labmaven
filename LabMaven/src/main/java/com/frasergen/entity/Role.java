@@ -1,11 +1,11 @@
 package com.frasergen.entity;
 
 public class Role {
-	private int position_id;
-	private int user_id;
-	private int role_id;
-	private String name;
-	private String description;
+	private int position_id; //角色部门位置id
+	private int user_id; //用户id
+	private int role_id; //角色id
+	private String name; //角色姓名
+	private String description; //角色描述
 	public Role() {
 		super();
 	}

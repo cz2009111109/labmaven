@@ -16,7 +16,7 @@ public interface SampleDao {
 	
 	public int updateData(Sample sample);
 	
-	public int deleteData(Sample sample);
+	public int deleteData(int sampleid);
 	
 	
 }

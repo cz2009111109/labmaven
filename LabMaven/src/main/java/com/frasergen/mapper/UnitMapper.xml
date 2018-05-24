@@ -60,15 +60,17 @@
 		update
 		unit
 		<set>
-			<if test="unitName!=null">
-				unitName = #{unitName},
-			</if>
-			<if test="description!=null">
-				unitName = #{description},
-			</if>
-			<if test="parent_id!=null">
-				parent_id = #{parent_id},
-			</if>
+			<trim suffixOverrides=",">
+				<if test="unitName!=null">
+					unitName = #{unitName},
+				</if>
+				<if test="description!=null">
+					unitName = #{description},
+				</if>
+				<if test="parent_id!=null">
+					parent_id = #{parent_id},
+				</if>
+			</trim>
 		</set>
 	</update>
 	

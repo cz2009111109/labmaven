@@ -5,52 +5,62 @@
 	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security.xsd">
-
+	
+	
+	
 	<!-- 配置不需要过滤的css/js等静态资源 -->
-	<!-- <http pattern="/WEBROOT/**" security="none" /> -->
-	<http pattern="/WEBROOT/login.html" security="none" />
-	<http pattern="/index.html" security="none" />
-	<http pattern="/WEBROOT/assets/**" security="none" />
+	<http pattern="/common/**" security="none" />
+	<http pattern="/login.html" security="none" />
+	<http pattern="/js/**" security="none" />
+	<http pattern="/assets/**" security="none" />
+	<http pattern="/images/**" security="none" />
 
+
+		
 	<!-- true表示使用框架的默认登录页面,自定义登录页面的话会覆盖默认的登录页面 -->
-	<http auto-config="true" use-expressions="true">
+	
+	<http auto-config="true" use-expressions="true" 
+	create-session="always"  >
+		<headers>
+			<frame-options policy="SAMEORIGIN"  />
+		</headers>
+		
 		<!-- 配置登录页面 /j-spring-security-check-->
-		<form-login login-page="/WEBROOT/login.html"
-			login-processing-url="/login"
-			username-parameter="account"
+		<form-login login-page="/login.html"
+			login-processing-url="/login.html"
+			username-parameter="name"
 			password-parameter="password"
-			default-target-url="/login.html"
-			authentication-failure-url="/login.html"
+			default-target-url="/main.html"
+			authentication-failure-url="/common/nologin.html"
 			always-use-default-target="true" />
 		<http-basic />
 
 		<!-- 配置退出页面 -->
-		<logout invalidate-session="true" logout-url="/j_spring_security_logout"
-			logout-success-url="/WEBROOT/login.html" />
+		<logout logout-url="/j_spring_security_logout" logout-success-url="/login.html"
+		invalidate-session="true"  />
 		<!-- 同一时间内允许同一账号保持1个在线,error-if-maximum-exceeded="true"表示第1个以后的登不进去 -->
 		<session-management>
 			<concurrency-control max-sessions="1"
 				error-if-maximum-exceeded="true" />
 		</session-management>
-		<csrf disabled="true" />
+		<csrf disabled="true"/>
 		<!-- 配置公共资源 -->
 		<intercept-url pattern="/login" access="permitAll" />
-
+		<intercept-url pattern="/main.html" access="authenticated" />
+		
 		<!-- 只有权限才能访问的请求IS_AUTHENTICATED_FULLY -->
-		<intercept-url pattern="/WEBROOT/**" access="hasRole('ROLE_DIRECTOR')" />
+		<intercept-url pattern="/purchase/**" access="hasRole('ROLE_LABBER')"/>
+		<intercept-url pattern="/sample/**" access="hasRole('ROLE_LABBER')"/>
+		<intercept-url pattern="/commodity/**" access="hasRole('ROLE_LABBER')"/>
+		
+		<intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')"/>
 	</http>
 
 	<!--验证配置，认证管理器，实现用户认证的入口，主要实现UserDetailsService接口即可   -->
 	<authentication-manager alias="myAuthenticationManager">
 		<authentication-provider user-service-ref="userDetailService">
-			<!-- <jdbc-user-service data-source-ref="dataSource" 
-			 users-by-username-query="select 
-				account,password,1 enabled from user where account=?" 
-			 authorities-by-username-query="select 
-				u.account,r.name as authority from user u,role r,userrolemanage ur where u.user_id=ur.user_id 
-				and ur.role_id=r.role_id where u.account=? "/> -->
-			<!--如果用户的密码采用加密的话 <password-encoder hash="md5" /> -->
+			
 		</authentication-provider>
 	</authentication-manager>
-	<!-- <beans:bean id="userDetailService" class="com.frasergen.security.UserDetailService"/> -->
+	<beans:bean id="userDetailService" class="com.frasergen.security.UserDetailService"/> 
 </beans:beans>

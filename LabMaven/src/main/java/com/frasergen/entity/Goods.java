@@ -7,12 +7,19 @@ public class Goods {
 	private int supplierid;//供应商id
 	private String function;//功能
 	private double stocknumber;//数量
+	private String itemnumber;//货号
+	private String norm;//规格单位
 	private int unitid;//单位
 	public Goods() {
 		super();
 	}
+	
+	
+	
+
+
 	public Goods(int goodsid, String name, String brands, int supplierid, String function, double stocknumber,
-			int unitid) {
+			String itemnumber, String norm, int unitid) {
 		super();
 		this.goodsid = goodsid;
 		this.name = name;
@@ -20,9 +27,38 @@ public class Goods {
 		this.supplierid = supplierid;
 		this.function = function;
 		this.stocknumber = stocknumber;
+		this.itemnumber = itemnumber;
+		this.norm = norm;
 		this.unitid = unitid;
 	}
+
 	
+	public String getNorm() {
+		return norm;
+	}
+
+
+
+
+
+	public void setNorm(String norm) {
+		this.norm = norm;
+	}
+
+
+
+
+
+	public String getItemnumber() {
+		return itemnumber;
+	}
+
+
+	public void setItemnumber(String itemnumber) {
+		this.itemnumber = itemnumber;
+	}
+
+
 	public int getGoodsid() {
 		return goodsid;
 	}
@@ -72,7 +108,9 @@ public class Goods {
 		result = prime * result + ((brands == null) ? 0 : brands.hashCode());
 		result = prime * result + ((function == null) ? 0 : function.hashCode());
 		result = prime * result + goodsid;
+		result = prime * result + ((itemnumber == null) ? 0 : itemnumber.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((norm == null) ? 0 : norm.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(stocknumber);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -101,10 +139,20 @@ public class Goods {
 			return false;
 		if (goodsid != other.goodsid)
 			return false;
+		if (itemnumber == null) {
+			if (other.itemnumber != null)
+				return false;
+		} else if (!itemnumber.equals(other.itemnumber))
+			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
+			return false;
+		if (norm == null) {
+			if (other.norm != null)
+				return false;
+		} else if (!norm.equals(other.norm))
 			return false;
 		if (Double.doubleToLongBits(stocknumber) != Double.doubleToLongBits(other.stocknumber))
 			return false;
@@ -117,7 +165,8 @@ public class Goods {
 	@Override
 	public String toString() {
 		return "Goods [goodsid=" + goodsid + ", name=" + name + ", brands=" + brands + ", supplierid=" + supplierid
-				+ ", function=" + function + ", stocknumber=" + stocknumber + ", unitid=" + unitid + "]";
+				+ ", function=" + function + ", stocknumber=" + stocknumber + ", itemnumber=" + itemnumber + ", norm="
+				+ norm + ", unitid=" + unitid + "]";
 	}
 	
 	

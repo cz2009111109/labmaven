@@ -3,12 +3,12 @@ package com.frasergen.entity;
 
 public class Purchase {
 	private int id; //主键
-	private int purchaseid;//申请单号
+	private String purchaseid;//申请单号
 	private int department_id;//申购部门
 	private int userid;//申请人
 	private String applytime;//申购日期
 	private int goodsid;//物品id
-	private double number;//数量
+	private double number;//采购数量
 	private int unitid;//单位
 	private double catalogprice;//目录价格
 	private double actualprice;//采购价格
@@ -17,7 +17,7 @@ public class Purchase {
 	public Purchase() {
 		super();
 	}
-	public Purchase(int id, int purchaseid, int department_id, int userid, String applytime, int goodsid, double number,
+	public Purchase(int id, String purchaseid, int department_id, int userid, String applytime, int goodsid, double number,
 			int unitid, double catalogprice, double actualprice, String function, String remark) {
 		super();
 		this.id = id;
@@ -39,10 +39,10 @@ public class Purchase {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getPurchaseid() {
+	public String getPurchaseid() {
 		return purchaseid;
 	}
-	public void setPurchaseid(int purchaseid) {
+	public void setPurchaseid(String purchaseid) {
 		this.purchaseid = purchaseid;
 	}
 	public int getdepartment_id() {
@@ -121,7 +121,7 @@ public class Purchase {
 		result = prime * result + id;
 		temp = Double.doubleToLongBits(number);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + purchaseid;
+		result = prime * result + ((purchaseid == null) ? 0 : purchaseid.hashCode());
 		result = prime * result + ((remark == null) ? 0 : remark.hashCode());
 		result = prime * result + unitid;
 		result = prime * result + userid;
@@ -158,7 +158,10 @@ public class Purchase {
 			return false;
 		if (Double.doubleToLongBits(number) != Double.doubleToLongBits(other.number))
 			return false;
-		if (purchaseid != other.purchaseid)
+		if (purchaseid == null) {
+			if (other.purchaseid != null)
+				return false;
+		} else if (!purchaseid.equals(other.purchaseid))
 			return false;
 		if (remark == null) {
 			if (other.remark != null)

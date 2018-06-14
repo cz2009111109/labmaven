@@ -2,7 +2,10 @@
 
   var baseUrl = '',         //网站的根目录地址，发布到线上时使用
     jsBase = '/assets/js';
-  
+  //console.log(baseUrl);
+  //console.log(jsBase);
+  //console.log(getCurrentPath());
+  //console.log(getBaseUrl());
   function isRelative(url){
     if(!/:/.test(url)){
       return true;

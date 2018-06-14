@@ -1,8 +1,7 @@
 package com.frasergen.entity;
 
 public class Role {
-	private int position_id; //角色部门位置id
-	private int user_id; //用户id
+	private int department_id; //角色部门位置id
 	private int role_id; //角色id
 	private String name; //角色姓名
 	private String description; //角色描述
@@ -10,26 +9,19 @@ public class Role {
 		super();
 	}
 	
-	public Role(int position_id, int user_id, int role_id, String name, String description) {
+	public Role(int department_id, int role_id, String name, String description) {
 		super();
-		this.position_id = position_id;
-		this.user_id = user_id;
+		this.department_id = department_id;
 		this.role_id = role_id;
 		this.name = name;
 		this.description = description;
 	}
 
-	public int getPosition_id() {
-		return position_id;
+	public int getdepartment_id() {
+		return department_id;
 	}
-	public void setPosition_id(int position_id) {
-		this.position_id = position_id;
-	}
-	public int getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setdepartment_id(int department_id) {
+		this.department_id = department_id;
 	}
 	public int getRole_id() {
 		return role_id;
@@ -60,9 +52,8 @@ public class Role {
 		int result = 1;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + position_id;
+		result = prime * result + department_id;
 		result = prime * result + role_id;
-		result = prime * result + user_id;
 		return result;
 	}
 
@@ -85,18 +76,16 @@ public class Role {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (position_id != other.position_id)
+		if (department_id != other.department_id)
 			return false;
 		if (role_id != other.role_id)
-			return false;
-		if (user_id != other.user_id)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Role [position_id=" + position_id + ", user_id=" + user_id + ", role_id=" + role_id + ", name=" + name
+		return "Role [department_id=" + department_id + ", role_id=" + role_id + ", name=" + name
 				+ ", description=" + description + "]";
 	}
 

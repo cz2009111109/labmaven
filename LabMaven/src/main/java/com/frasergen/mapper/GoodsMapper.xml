@@ -23,6 +23,12 @@
 			<if test="unitid !=null">
 				unitid,
 			</if>
+			<if test="norm !=null">
+				norm,
+			</if>
+			<if test="itemnumber !=null">
+				itemnumber,
+			</if>
 		</trim>
 	</sql>
 	
@@ -45,6 +51,12 @@
 			</if>
 			<if test="unitid !=null">
 				#{unitid},
+			</if>
+			<if test="norm !=null">
+				#{norm},
+			</if>
+			<if test="itemnumber !=null">
+				#{itemnumber},
 			</if>
 		</trim>
 	</sql>
@@ -80,6 +92,12 @@
 				</if>
 				<if test="unitid !=null">
 					unitid = #{unitid},
+				</if>
+				<if test="norm !=null">
+					norm = #{norm},
+				</if>
+				<if test="itemnumber !=null">
+					itemnumber = #{itemnumber},
 				</if>
 			</trim>
 		</set>

@@ -6,7 +6,7 @@ import com.frasergen.entity.User_smtp;
 
 public interface User_smtpDao {
 	
-	public List<User_smtp> queryAll();
+	
 	
 	public int addData(User_smtp user_smtp);
 	
@@ -18,4 +18,6 @@ public interface User_smtpDao {
 	public User_smtp queryBySmtpId(int smtp_id);
 	
 	public User_smtp queryByUserId(int user_id);
+	
+	public List<User_smtp> queryAll();
 }

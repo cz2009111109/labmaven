@@ -5,9 +5,6 @@
 	
 	<sql id="key">
 		<trim suffixOverrides=",">
-			<if test="user_id!=null">
-				user_id,
-			</if>
 			<if test="name!=null">
 				name,
 			</if>
@@ -22,9 +19,6 @@
 	
 	<sql id="value">
 		<trim suffixOverrides=",">
-			<if test="user_id!=null">
-				#{user_id},
-			</if>
 			<if test="name!=null">
 				#{name},
 			</if>
@@ -37,7 +31,8 @@
 		</trim>
 	</sql>
 	
-	<insert id="addData" parameterType="com.frasergen.entity.Role">
+	<insert id="addData" parameterType="com.frasergen.entity.Role" 
+	useGeneratedKeys="true" keyProperty="role_id" >
 		insert into
 		role
 		<include refid="key"></include>
@@ -45,14 +40,11 @@
 		<include refid="value"></include>
 	</insert>
 	
-	<update id="" parameterType="com.frasergen.entity.Role">
+	<update id="updateData" parameterType="com.frasergen.entity.Role">
 		update
 		role
 		<set>
 			<trim suffixOverrides=",">
-				<if test="user_id!=null">
-					user_id = #{user_id},
-				</if>
 				<if test="name!=null">
 					name = #{name},
 				</if>
@@ -64,6 +56,8 @@
 				</if>
 			</trim>
 		</set>
+		where
+		role_id=#{role_id}
 	</update>
 	
 	<delete id="deleteData" parameterType="int">

@@ -96,7 +96,7 @@
 		user
 		(<include refid="key" />)
 		values
-		(<include refid="values"></include>)
+		(<include refid="value"></include>)
 	</insert>
 	
 	<delete id="delUser" parameterType="int" >
@@ -156,13 +156,17 @@
 		user_id=#{user_id}
 	</update>
 	
-	<select id="queryAllUser" resultType="com.frasergen.entity.User" >
-		select 
-			address,birthday,email,full_name,name,password,qq,sex,state,telephone,token,token_time,user_id
-		from user
+	<select id="queryAll" resultType="com.frasergen.entity.User" >
+		select * from user
 	</select>
 	
-	<select id="queryUserById"  resultType="com.frasergen.entity.User" >
+	<select id="queryByAccount" parameterType="java.lang.String" resultType="com.frasergen.entity.User" >
+		select * from user
+		where
+		name=#{name}
+	</select>
+	
+	<select id="queryUserById" parameterType="int" resultType="com.frasergen.entity.User" >
 		select 
 			address,birthday,email,full_name,name,password,qq,sex,state,telephone,token,token_time,user_id
 		from user
@@ -183,4 +187,15 @@
 			</if>
 		</where>
 	</select>
+	
+	<select id="getShare" parameterType="com.frasergen.entity.User" resultType="com.frasergen.entity.Share" >
+		select 
+			u.user_id as user_id,u.full_name as full_name,u.name as name,r.name as author,r.role_id,r.department_id as department_id
+		from user u
+		left join usermanager um on um.user_id=u.user_id
+		left join role r on um.role_id=r.role_id
+		where
+		u.name=#{name}
+	</select>
+	
 </mapper>

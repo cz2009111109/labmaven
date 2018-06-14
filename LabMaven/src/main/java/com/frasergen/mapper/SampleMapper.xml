@@ -185,13 +185,13 @@
 		sampleid=#{sampleid}
 	</delete>
 	
-	<select id="queryAll" resultMap="com.frasergen.entity.Sample">
+	<select id="queryAll" resultType="com.frasergen.entity.Sample">
 		select * 
 		from
 		sample  
 	</select>
 	
-	<select id="queryById" parameterType="int" resultMap="com.frasergen.entity.Sample">
+	<select id="queryById" parameterType="int" resultType="com.frasergen.entity.Sample">
 		select
 		*
 		from
@@ -200,7 +200,7 @@
 		sampleid=#{sampleid}
 	</select>
 	
-	<select id="queryLike" parameterType="map" resultMap="com.frasergen.entity.Sample">
+	<select id="queryLike" parameterType="map" resultType="com.frasergen.entity.Sample">
 		select
 		*
 		from

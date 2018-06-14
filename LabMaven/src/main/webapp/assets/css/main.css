@@ -68,7 +68,7 @@
   display: none;
 }
 html {
-  *overflow: hidden;
+  *overflow: hidden;overflow-x:hidden;overflow-y:auto;
 }
 body {
   overflow: hidden;

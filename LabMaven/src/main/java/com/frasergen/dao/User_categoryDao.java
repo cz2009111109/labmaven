@@ -7,16 +7,18 @@ import com.frasergen.entity.User_category;
 
 public interface User_categoryDao {
 	
-public List<User_category> queryAll();
-	
-	public int addData(User_category user_smtp);
-	
-	public int updateData(User_category user_smtp);
 	
 	
-	public int deleteData(int categoryid);
+	public int addData(User_category user_category);
 	
-	public User_category queryById(int categoryid);
+	public int updateData(User_category user_category);
+	
+	
+	public int deleteData(int category_id);
+	
+	public User_category queryById(int category_id);
+	
+	public List<User_category> queryAll();
 	
 
 	

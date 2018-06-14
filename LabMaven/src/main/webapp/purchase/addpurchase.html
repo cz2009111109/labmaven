@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title> 详情页</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       <link href="../assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/page-min.css" rel="stylesheet" type="text/css" />   <!-- 下面的样式，仅是为了显示代码，而不应该在项目中使用-->
+   <link href="../assets/css/prettify.css" rel="stylesheet" type="text/css" />
+   <style type="text/css">
+    code {
+      padding: 0px 4px;
+      color: #d14;
+      background-color: #f7f7f9;
+      border: 1px solid #e1e1e8;
+    }
+   </style>
+ </head>
+ <body>
+      
+  <div class="container">
+    <form class="form-inline definewidth m20" action="../SelectItemServlet" method="post" onsubmit="MemoryForm();">    
+	   物品名称：<input type="text" name="itemNumber" id="itemNumber" class="abc input-default" >
+	   品牌：<input type="text" name="item_name" id="item_name" class="abc input-default" placeholder="" value="">  
+	   客户名称：<input type="text" name="customer" id="customer" class="abc input-default" placeholder="" value="">
+	    &nbsp;&nbsp;<button type="submit" class="btn btn-primary" >查询</button> <br/> 
+	    <button type="button" class="btn btn-success" id="showupdata">显示本周更新</button>
+	    <button type="button" class="btn btn-success" id="showall">显示所有项目</button>
+		<button type="button" class="btn btn-success" id="excel">导出表格</button>
+	</form>
+	<form id="upload" method="POST"  enctype="multipart/form-data"  action="addLargePurchaseOrder">  
+        <table>  
+         <tr>  
+            <td>上传excel文件: </td>  
+            <td> <input id="upfile" type="file" name="excel" ></td>  
+         </tr>  
+        <tr>  
+            <td><input type="button" value="文件提交" onclick="return checkData()"></td>   
+         </tr>  
+        </table>
+    </form>
+    <hr/>
+      <div class="detail-section"> 
+        <h3>试剂耗材申购单导入成功列表</h3>
+        <div class="row detail-row">
+          <div class="span24">
+            <div id="grid"></div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <script type="text/javascript" src="../assets/js/jquery-1.8.1.min.js"></script>
+  <script type="text/javascript" src="../assets/js/bui-min.js"></script>
+
+  <script type="text/javascript" src="../assets/js/config-min.js"></script>
+  <script type="text/javascript">
+    BUI.use('common/page');
+  </script>
+  <!-- 仅仅为了显示代码使用，不要在项目中引入使用-->
+  <script type="text/javascript" src="../assets/js/prettify.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      prettyPrint();
+    });
+  </script> 
+<script type="text/javascript">
+	function checkData(){    
+		   var fileDir = $("#upfile").val();    
+		   var suffix = fileDir.substr(fileDir.lastIndexOf("."));    
+		   if("" == fileDir){    
+		       alert("选择需要导入的Excel文件！");    
+		       return false;    
+		   }    
+		   if(".xls" != suffix && ".xlsx" != suffix ){    
+		       alert("选择Excel格式的文件导入！");    
+		       return false;    
+		   }    
+		   var form = document.getElementById("upload");
+		   formData = new FormData(form);
+		   $.ajax({
+		   		url:"/LabMaven/purchase/addLargePurchaseOrder",
+		   		type:"post", 
+	   	 		data:formData, 
+	  	 		processData:false, 
+	   	 		contentType:false, 
+	  	 		success:success, 
+	  			error:function(err){ 
+	   				 alert("请确保必填项无缺失",err); 
+	   			} 
+			   		
+		   })
+		   function success(res){ 
+		   		$("#grid").empty();
+		     	if(res!=null){ 
+			      	alert("数据导入成功！");
+			 		//window.location.href='/LabMaven/purchase/addpurchase.html';
+			 		console.log(res);
+			 		
+			 		BUI.use('bui/grid',function (Grid) {
+					    var data = res;			 	
+				        grid = new Grid.SimpleGrid({
+				          render : '#grid', //显示Grid到此处
+				          width : 950,      //设置宽度
+				          columns : [
+				          	 {title:'物品名称',dataIndex:'goodsname',width:200},
+				            {title:'申请单号',dataIndex:'purchaseid',width:80},
+				            {title:'申请部门',dataIndex:'departmentname',width:60},
+				            {title:'申请人',dataIndex:'username',width:60,},
+				            {title:'申购日期',dataIndex:'applytime',width:100,renderer:Grid.Format.dateRenderer},
+				           
+				            {title:'品牌',dataIndex:'brands',width:80},
+				            {title:'货号',dataIndex:'itemnumber',width:80},
+				            {title:'采购数量',dataIndex:'number',width:80},
+				            {title:'规格单位',dataIndex:'unitName',width:80},
+				            {title:'规格数量',dataIndex:'norm',width:80},
+				            {title:'用途',dataIndex:'function',width:150},
+				            {title:'备注',dataIndex:'remark',width:150},
+				          ]
+				        });
+				      grid.render();
+				      grid.showData(data);
+				      
+				  });
+			    }else{
+					alert("导入失败，请检查字段顺序并确保必填项无缺失！");
+				}}
+		   
+		}  
+  
+</script>
+
+<body>
+</html>  

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyHtml.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+	<script type="text/javascript" src="../js/getContextPath.js"></script>
+  </head>
+  
+  <body>
+  	  登陆失效，<span id="num">5</span> s后进入登陆界面 <br>
+  </body>
+  <script type="text/javascript">  
+    window.onload=function(){         //一进该页面就加载以下方法  
+    setInterval('countDown()',1000);    //一般秒设置为参数为1000  
+    }  
+        var sec =5;                  //设置倒计时时间为5秒  
+        function countDown() {        //倒计时的方法  
+        	num=document.getElementById("num");
+            if(sec > 0) {  
+                num.innerHTML = sec--;  
+            } else {  
+                location ="/"+ getContextPath()+"/login.html";  //倒计时为0进入的页面  
+                                      }  
+        }  
+    </script>  
+</html>

@@ -101,9 +101,6 @@ public class CommodityController {
 			ModelAndView mv){
 		LinkedHashMap<String,Object> map=new LinkedHashMap<String, Object>();
 		try {
-//			System.out.println("=====================");
-//			RestUtils.getRequestParameter(req,res);
-//			System.out.println("=================");
 			PageUtil page=cs.queryByPage(pg);
 			map.put("result", true);
 			map.put("rows", page.getList());

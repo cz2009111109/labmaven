@@ -165,7 +165,7 @@ $(document).ready(function(){
 	            {title:'操作',renderer:function(value,obj,index){
 	            	console.log(obj);
 	            	return '<span class="grid-command btn-edit center">编辑</span>'+'<a href="Editcommodity.html?id='+obj.id+'">使用</a>';
-	            },width:80}
+	            },width:120}
 	          ];
 	          Store = Data.Store,
 	           store = new Store({

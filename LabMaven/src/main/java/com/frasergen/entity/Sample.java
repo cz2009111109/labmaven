@@ -4,6 +4,7 @@ public class Sample {
 	private int sampleid;
 	private String salesman;//销售
 	private String sendername; //寄样人
+	private String telephone; //联系电话
 	private String sampleType; //样品类型
 	private String sampleState;//采样前状态
 	private String serialnumber;//样本编号
@@ -20,6 +21,6 @@ public class Sample {
 	private String RNAdensity; //RNA浓度
 	private String RNAvolume; //RNA体积
 	private double RIN; //RNA的RIN值 
-	private String kuwei;
+	private int locationid; //存储位置
 	
 }

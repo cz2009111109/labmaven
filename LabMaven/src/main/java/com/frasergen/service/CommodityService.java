@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.frasergen.entity.Commodity;
+import com.frasergen.util.PageUtil;
 
 public interface CommodityService {
 	
@@ -14,7 +15,9 @@ public interface CommodityService {
 	
 	public boolean deleteData(int id);
 	
-	public List<Commodity> queryAll();
+	public PageUtil queryAll(PageUtil pg);
+	
+	public PageUtil queryByPage(PageUtil pg);
 	
 	public Commodity queryById(int id);
 	

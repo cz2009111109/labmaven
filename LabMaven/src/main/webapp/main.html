@@ -3,17 +3,17 @@
  <head>
   <title>菲沙基因实验室管理系统</title>
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
    <link href="assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
   <link href="assets/css/bui-min.css" rel="stylesheet" type="text/css" />
    <link href="assets/css/main-min.css" rel="stylesheet" type="text/css" />
  </head>
  <body>
 
-  <div class="header">
+  <div class="header" >
     
       <div class="dl-title">
-           <img style="display: inline;width:200px;" src="images/logo1.png">&nbsp;&nbsp;
-           <span style="font-family: '微软雅黑';font-size: 38px;">菲沙基因实验室管理系统</span>
+           <span style="font-family: '微软雅黑';">菲沙基因实验室管理系统</span>
       </div>
 
     <div class="dl-log">欢迎您，
@@ -23,8 +23,9 @@
   </div>
   
    <div class="content">
-    <div class="dl-main-nav">
-      <div class="dl-inform"><div class="dl-inform-title">菲沙基因实验室管理系统<s class="dl-inform-icon dl-up"></s></div></div>
+    <div class="dl-main-nav" >
+      <div class="dl-inform" ><div class="dl-inform-title">菲沙基因实验室管理系统<s class="dl-inform-icon dl-up"></s></div>
+     </div>
       <ul id="J_Nav"  class="nav-list ks-clear">
         <li class="nav-item dl-selected"><div class="nav-item-inner nav-home">申购</div></li>
        <li class="nav-item"><div class="nav-item-inner nav-sample">库存</div></li>
@@ -32,15 +33,15 @@
        <li class="nav-item"><div class="nav-item-inner nav-supplier">财务 </div></li>
          <!-- <li class="nav-item"><div class="nav-item-inner nav-marketing">图表</div></li> -->
       </ul>
-    </div>
-    <ul id="J_NavContent" class="dl-tab-conten">
+   </div>
+    <ul id="J_NavContent" class="dl-tab-content">
 
     </ul>
    </div>
   <script type="text/javascript" src="assets/js/jquery-1.8.1.min.js"></script>
   <script type="text/javascript" src="./assets/js/bui.js"></script>
   <script type="text/javascript" src="./assets/js/config.js"></script>
-<script type="text/javascript" src="js/getContextPath.js"></script>
+	<script type="text/javascript" src="./js/commom.js">addLinkFavicon("./");</script>
   <script>
   	
   	$(function(){
@@ -57,6 +58,7 @@
       var config = [{
           id:'menu', 
           homePage : 'showpurchase',
+          collapsed:false,
           menu:[{
               text:'申购',
               items:[
@@ -66,16 +68,18 @@
               ]
             }]},{
             id:'inventory',
+            homePage :'commodity',
             menu:[{
               text:'库存',
               items:[
-                {id:'showinventory',text:'库存查询',href:'commodity/showcommodity.html',}
+                {id:'commodity',text:'库存查询',href:'commodity/commodity.html',}
               ]
             }]
           },{
           id:'sample',
           menu:[{
               text:'样本',
+              homePage :'sample',
               items:[
                 {id:'sample',text:'表单代码',href:'form/code.html'}
               ]}]
@@ -83,6 +87,7 @@
           id:'finance',
           menu:[{
               text:'财务',
+              homePage :'code',
               items:[
                 {id:'code',text:'表单代码',href:'form/code.html'}
               ]}]

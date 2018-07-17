@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.frasergen.entity.Commodity;
+import com.frasergen.util.PageUtil;
 
 public interface CommodityDao {
 	
@@ -16,5 +17,10 @@ public interface CommodityDao {
 	
 	public List<Commodity> queryAll();
 	
-	public int addLargerData(@Param("list")List<Commodity> list);
+	public List<Commodity> queryByPage();
+	
+	public Commodity queryById(int id);
+	
+	public int addLargeData(@Param("list")List<Commodity> list);
+	
 }

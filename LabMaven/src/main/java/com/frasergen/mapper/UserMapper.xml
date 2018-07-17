@@ -194,6 +194,7 @@
 		from user u
 		left join usermanager um on um.user_id=u.user_id
 		left join role r on um.role_id=r.role_id
+		left join role_department dm on dm.department_id=r.department_id
 		where
 		u.name=#{name}
 	</select>

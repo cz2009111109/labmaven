@@ -63,7 +63,7 @@ public class ExcelToCommodityList {
 		Sheet sheet = workbook.getSheetAt(sheetNum);//第sheetNum张表，下标从0开始
 		int sumrow = sheet.getLastRowNum();//总数据量
 		int firstrow = sheet.getFirstRowNum();//起始行，从0开始，字段属性行
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//时间类型格式化
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd	HH:mm:ss.SSSSSSSXXX");//时间类型格式化
 		DecimalFormat df = new DecimalFormat("0");//小数类型格式化，把科学计数法的double类型完全显示
 		List<Commodity> list = new ArrayList<Commodity>();
 		Commodity commodity = null;
@@ -108,7 +108,7 @@ public class ExcelToCommodityList {
 							s = sdf.format(date);
 							System.out.println("申购日期:"+s);
 							//s=c.toString();
-							commodity.setApplytime(s);
+							commodity.setApplytime(date);
 							break;
 						case 4://物品名称
 							c.setCellType(CellType.STRING);
@@ -149,9 +149,8 @@ public class ExcelToCommodityList {
 							break;
 						
 						case 12://标准数量
-							c.setCellType(CellType.STRING);
-							s=c.toString();
-							commodity.setUnitName(s);
+							c.setCellType(CellType.NUMERIC);
+							commodity.setNormnumber(c.getNumericCellValue());;
 							break;
 						case 13://规格单位
 							c.setCellType(CellType.STRING);
@@ -161,22 +160,46 @@ public class ExcelToCommodityList {
 						case 14://采购公司
 							c.setCellType(CellType.STRING);
 							s=c.toString();
-							commodity.setUnitName(s);
+							commodity.setCompany(s);
 							break;
 						case 15://用途
 							c.setCellType(CellType.STRING);
 							s = c.getStringCellValue();
-							commodity.setFunction(s);;
+							commodity.setFunction(s);
 							break;
-						case 16://状态
+						case 16://备注
 							c.setCellType(CellType.STRING);
 							s = c.getStringCellValue();
 							commodity.setRemark(s);;
 							break;
-						case 17://备注
+						case 17://说明
+							c.setCellType(CellType.STRING);
+							s = c.getStringCellValue()!=null?c.getStringCellValue():"";
+							commodity.setDescritpion(s);
+							break;
+						case 18://类别
 							c.setCellType(CellType.STRING);
 							s = c.getStringCellValue();
-							commodity.setRemark(s);;
+							commodity.setCategory(s);
+							break;
+						case 19://开票状态
+							c.setCellType(CellType.STRING);
+							s = c.getStringCellValue();
+							commodity.setInvoicestatus(s);
+							break;
+						case 20://付款状态
+							c.setCellType(CellType.STRING);
+							s = c.getStringCellValue();
+							commodity.setPaymentstatus(s);
+							break;
+						case 21://货物状态
+							c.setCellType(CellType.STRING);
+							s = c.getStringCellValue();
+							commodity.setStatus(s);
+							break;
+						case 22://库存
+							c.setCellType(CellType.NUMERIC);
+							commodity.setInventory(c.getNumericCellValue());
 							break;
 						default:
 							break;

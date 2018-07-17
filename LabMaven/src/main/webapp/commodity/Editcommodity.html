@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>编辑</title>
+</head>
+<body>
+	编辑
+	<script type="text/javascript">
+	function getQueryString(name) {
+	    var result = window.location.search.match(new RegExp("[\?\&]" + name + "=([^\&]+)", "i"));
+	    if (result == null || result.length < 1) {
+	        return "";
+	    }
+	    return result[1];
+	}
+	var str = getQueryString("id");
+   alert(str);
+	</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title> 详情页</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       <link href="../assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/page-min.css" rel="stylesheet" type="text/css" />   <!-- 下面的样式，仅是为了显示代码，而不应该在项目中使用-->
+   <link href="../assets/css/prettify.css" rel="stylesheet" type="text/css" />
+ </head>
+ <body >
+      
+  <div class="container" >
+	<div class="row">
+	     <form class="form-horizontal" action="../SelectItemServlet" method="post" onsubmit="">    
+		  
+		 
+		 <div class="control-group span8">
+            <label class="control-label"> 物品名称：</label>
+            <div class="controls">
+             <input type="text" name="goodsname" id="goodsname" class="abc input-default" >
+            </div>
+          </div>
+         
+          <div class="control-group span8">
+            <label class="control-label">   客户名称：</label>
+            <div class="controls">
+             <input type="text" name="customer" id="customer" class="abc input-default" placeholder="" value="">
+            </div>
+          </div>
+		   
+		   <div class="control-group span8">
+            <label class="control-label">   客户名称：</label>
+            <div class="controls">
+             <input type="text" name="customer" id="customer" class="abc input-default" placeholder="" value="">
+            </div>
+          </div>
+           </form>
+         
+          
+          <div class="control-group span8 offset1">
+           
+            <div class="controls">
+             <button type="submit" class="btn btn-primary" >查询</button>
+            </div>
+          </div>
+		
+	</div> 
+	<hr/>
+	<div class="  ">
+	            <form id="upload" method="POST"  enctype="multipart/form-data"  action="addLargecommodity">  
+			        <label class="control-label">上传excel文件: </label>
+			         <div class="controls">
+			        	 <input id="upfile" type="file" name="excel" >
+			           <input type="button" value="文件提交" onclick="return checkData()">  
+					 </div>
+			    </form>
+	          </div>
+	<hr/>
+	<form id ="J_Form" class=""> 
+	<div class="row">
+		
+       <h3>库存列表</h3>
+       <div class="row" >
+        <div class="span24 ">
+          <div id="grid"></div>
+        </div>
+ 		</div>
+    </div>
+    </form>
+    <hr/>
+    <div id="content" class="hide">
+      <form id="J_Form1" action="" method="post"  class="form-horizontal">
+
+      </form>
+    </div>
+    
+  </div>
+  <script type="text/javascript" src="../assets/js/jquery-1.8.1.min.js"></script>
+  <script type="text/javascript" src="../assets/js/bui-min.js"></script>
+
+  <script type="text/javascript" src="../assets/js/config-min.js"></script>
+  <script type="text/javascript">
+    BUI.use('common/page');
+  </script>
+  <!-- 仅仅为了显示代码使用，不要在项目中引入使用-->
+<!--   <script type="text/javascript" src="../assets/js/prettify.js"></script> -->
+  <script type="text/javascript">
+    $(function () {
+    });
+  </script> 
+<script type="text/javascript" charset="utf-8" src="commodity.js"></script>
+
+<body>
+</html>  

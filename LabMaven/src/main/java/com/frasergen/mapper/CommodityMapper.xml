@@ -48,11 +48,32 @@
 			<if test=" normnumber !=null">
 				normnumber,
 			</if>
+			<if test=" company !=null">
+				company,
+			</if>
 			<if test=" function !=null">
 				function,
 			</if>
+			<if test=" invoicestatus !=null">
+				invoicestatus,
+			</if>
+			<if test=" paymentstatus !=null">
+				paymentstatus,
+			</if>
+			<if test=" status !=null">
+				status,
+			</if>
 			<if test=" remark !=null">
 				remark,
+			</if>
+			<if test=" descritpion !=null">
+				descritpion,
+			</if>
+			<if test=" category !=null">
+				category,
+			</if>
+			<if test=" inventory !=null">
+				inventory,
 			</if>
 		</trim>
 	</sql>
@@ -101,13 +122,33 @@
 			<if test=" normnumber !=null">
 				#{ normnumber },
 			</if>
+			<if test=" company !=null">
+				#{ company },
+			</if>
 			<if test=" function !=null">
 				#{ function },
+			</if>
+			<if test=" invoicestatus !=null">
+				#{ invoicestatus},
+			</if>
+			<if test=" paymentstatus !=null">
+				#{ paymentstatus},
+			</if>
+			<if test=" status !=null">
+				#{ status },
 			</if>
 			<if test=" remark !=null">
 				#{ remark },
 			</if>
-			
+			<if test=" descritpion !=null">
+				#{ descritpion},
+			</if>
+			<if test=" category !=null">
+				#{ category},
+			</if>
+			<if test=" inventory !=null">
+				#{ inventory},
+			</if>
 		</trim>
 	</sql>
 	
@@ -161,11 +202,32 @@
 				<if test=" normnumber !=null">
 					normnumber = #{ normnumber },
 				</if>
+				<if test=" company !=null">
+					company = #{ company },
+				</if>
 				<if test=" function !=null">
 					function = #{ function },
 				</if>
+				<if test=" invoicestatus !=null">
+					invoicestatus = #{ invoicestatus},
+				</if>
+				<if test=" paymentstatus !=null">
+					paymentstatus = #{ paymentstatus},
+				</if>
+				<if test=" status !=null">
+					status = #{ status },
+				</if>
 				<if test=" remark !=null">
 					remark = #{ remark },
+				</if>
+				<if test=" descritpion !=null">
+					descritpion = #{ descritpion},
+				</if>
+				<if test=" category !=null">
+					category = #{ category},
+				</if>
+				<if test=" inventory !=null">
+					inventory = #{ inventory},
 				</if>
 			</trim>
 		</set>
@@ -185,6 +247,14 @@
 		select *
 		from
 		Commodity
+		where 1=1
+	</select>
+	
+	<select id="queryByPage" resultType="com.frasergen.entity.Commodity">
+		select *
+		from
+		Commodity
+		
 	</select>
 	
 	<select id="queryById" parameterType="int" resultType="com.frasergen.entity.Commodity">
@@ -200,12 +270,16 @@
 		Commodity
 		(purchaseid,departmentname,username,applytime,price,
 		goodsname,brands,itemnumber,catalogprice,actualprice,
-		number,unitName,normnumber,norm,function,remark)
+		number,unitName,normnumber,norm,company,
+		invoicestatus,paymentstatus,function,status,remark,
+		descritpion,category,inventory)
 		values
 		<foreach collection="list" item="p" separator=",">
 			(#{p.purchaseid },#{p.departmentname },#{p.username },#{p.applytime },#{p.price },
 			#{p.goodsname },#{p.brands },#{p.itemnumber },#{p.catalogprice },#{p.actualprice },
-			#{p.number },#{p.unitName },#{p.normnumber },#{p.norm },#{p.function },#{p.remark })
+			#{p.number },#{p.unitName },#{p.normnumber },#{p.norm },#{p.company },
+			#{p.invoicestatus },#{p.paymentstatus },#{p.function },#{p.status },#{p.remark },
+			#{p.descritpion },#{p.category },#{p.inventory })
 		</foreach>
 	</insert>
 	

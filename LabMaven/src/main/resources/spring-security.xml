@@ -10,6 +10,8 @@
 	
 	<!-- 配置不需要过滤的css/js等静态资源 -->
 	<http pattern="/common/**" security="none" />
+	<http pattern="/favicon.png" security="none" />
+	<http pattern="/favicon.html" security="none" />
 	<http pattern="/login.html" security="none" />
 	<http pattern="/js/**" security="none" />
 	<http pattern="/assets/**" security="none" />
@@ -46,13 +48,14 @@
 		<csrf disabled="true"/>
 		<!-- 配置公共资源 -->
 		<intercept-url pattern="/login" access="permitAll" />
+		<intercept-url pattern="/TestAction" access="permitAll" />
 		<intercept-url pattern="/main.html" access="authenticated" />
 		
 		<!-- 只有权限才能访问的请求IS_AUTHENTICATED_FULLY -->
 		<intercept-url pattern="/purchase/**" access="hasRole('ROLE_LABBER')"/>
 		<intercept-url pattern="/sample/**" access="hasRole('ROLE_LABBER')"/>
 		<intercept-url pattern="/commodity/**" access="hasRole('ROLE_LABBER')"/>
-		
+		<intercept-url pattern="/finance/**" access="hasRole('ROLE_LABBER')"/>
 		<intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')"/>
 	</http>
 

@@ -6,7 +6,7 @@ public class PageUtil {
 	private int pageindex = 1; // 页码
 	private int pagesize = 50; // 每页显示条数
 	private int totalnum; // 总页数
-	private int totalcount; // 总条数
+	private long totalcount; // 总条数
 	private List list = null;
 	public List getList() {
 		return list;
@@ -67,11 +67,11 @@ public class PageUtil {
 		this.totalnum = totalnum;
 	}
 
-	public int getTotalcount() {
+	public long getTotalcount() {
 		return totalcount;
 	}
 
-	public void setTotalcount(int totalcount) {
+	public void setTotalcount(long totalcount) {
 		this.totalcount = totalcount;
 	}
 }

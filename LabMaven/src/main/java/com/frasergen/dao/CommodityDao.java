@@ -23,4 +23,5 @@ public interface CommodityDao {
 	
 	public int addLargeData(@Param("list")List<Commodity> list);
 	
+	
 }

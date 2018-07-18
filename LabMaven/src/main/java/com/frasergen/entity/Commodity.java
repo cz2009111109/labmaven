@@ -27,19 +27,20 @@ public class Commodity {
 	private String paymentstatus;//付款状态
 	private String status;//到货状态
 	private String remark;//备注
-	
+	private int invertoryid;
 	/***新加字段**/
 	private String descritpion;//说明
 	private String category;//类别
-	private double inventory;//库存量
+	private double inventoryNum;//库存量
+	private Inventory inventory;//库位
 	public Commodity() {
 		super();
 	}
 	public Commodity(int id, String purchaseid, String departmentname, String username, Date applytime,
 			String goodsname, String brands, String itemnumber, double catalogprice, double actualprice, double number,
 			double price, String unitName, double norm, double normnumber, String company, String function,
-			String invoicestatus, String paymentstatus, String status, String remark, String descritpion,
-			String category, double inventory) {
+			String invoicestatus, String paymentstatus, String status, String remark, int invertoryid,
+			String descritpion, String category, double inventoryNum, Inventory inventory) {
 		super();
 		this.id = id;
 		this.purchaseid = purchaseid;
@@ -62,8 +63,10 @@ public class Commodity {
 		this.paymentstatus = paymentstatus;
 		this.status = status;
 		this.remark = remark;
+		this.invertoryid = invertoryid;
 		this.descritpion = descritpion;
 		this.category = category;
+		this.inventoryNum = inventoryNum;
 		this.inventory = inventory;
 	}
 	public int getId() {
@@ -192,6 +195,12 @@ public class Commodity {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
+	public int getInvertoryid() {
+		return invertoryid;
+	}
+	public void setInvertoryid(int invertoryid) {
+		this.invertoryid = invertoryid;
+	}
 	public String getDescritpion() {
 		return descritpion;
 	}
@@ -204,10 +213,16 @@ public class Commodity {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public double getInventory() {
+	public double getInventoryNum() {
+		return inventoryNum;
+	}
+	public void setInventoryNum(double inventoryNum) {
+		this.inventoryNum = inventoryNum;
+	}
+	public Inventory getInventory() {
 		return inventory;
 	}
-	public void setInventory(double inventory) {
+	public void setInventory(Inventory inventory) {
 		this.inventory = inventory;
 	}
 	@Override
@@ -228,8 +243,10 @@ public class Commodity {
 		result = prime * result + ((function == null) ? 0 : function.hashCode());
 		result = prime * result + ((goodsname == null) ? 0 : goodsname.hashCode());
 		result = prime * result + id;
-		temp = Double.doubleToLongBits(inventory);
+		result = prime * result + ((inventory == null) ? 0 : inventory.hashCode());
+		temp = Double.doubleToLongBits(inventoryNum);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + invertoryid;
 		result = prime * result + ((invoicestatus == null) ? 0 : invoicestatus.hashCode());
 		result = prime * result + ((itemnumber == null) ? 0 : itemnumber.hashCode());
 		temp = Double.doubleToLongBits(norm);
@@ -303,7 +320,14 @@ public class Commodity {
 			return false;
 		if (id != other.id)
 			return false;
-		if (Double.doubleToLongBits(inventory) != Double.doubleToLongBits(other.inventory))
+		if (inventory == null) {
+			if (other.inventory != null)
+				return false;
+		} else if (!inventory.equals(other.inventory))
+			return false;
+		if (Double.doubleToLongBits(inventoryNum) != Double.doubleToLongBits(other.inventoryNum))
+			return false;
+		if (invertoryid != other.invertoryid)
 			return false;
 		if (invoicestatus == null) {
 			if (other.invoicestatus != null)
@@ -363,8 +387,8 @@ public class Commodity {
 				+ actualprice + ", number=" + number + ", price=" + price + ", unitName=" + unitName + ", norm=" + norm
 				+ ", normnumber=" + normnumber + ", company=" + company + ", function=" + function + ", invoicestatus="
 				+ invoicestatus + ", paymentstatus=" + paymentstatus + ", status=" + status + ", remark=" + remark
-				+ ", descritpion=" + descritpion + ", category=" + category + ", inventory=" + inventory + "]";
+				+ ", invertoryid=" + invertoryid + ", descritpion=" + descritpion + ", category=" + category
+				+ ", inventoryNum=" + inventoryNum + ", inventory=" + inventory + "]";
 	}
-
 	
 }

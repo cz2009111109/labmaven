@@ -199,7 +199,7 @@ public class ExcelToCommodityList {
 							break;
 						case 22://库存
 							c.setCellType(CellType.NUMERIC);
-							commodity.setInventory(c.getNumericCellValue());
+							commodity.setInventoryNum(c.getNumericCellValue());
 							break;
 						default:
 							break;

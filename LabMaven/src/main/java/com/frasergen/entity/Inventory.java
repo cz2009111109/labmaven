@@ -6,6 +6,8 @@ public class Inventory {
 	private int id;//库存id
 	private String name; //库存名称，即货物名称
 	private String description;
+	private double inventoryNum;//库存数量
+	private String remark;//备注
 	private List<Commodity> commoditys;
 	public Inventory() {
 		super();

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.frasergen.dao.InventoryDao">
+	
+	<sql id="key">
+		<trim suffixOverrides=",">
+			<if test="inventoryNum !=null">
+				inventoryNum,
+			</if>
+			<if test="name !=null">
+				name,
+			</if>
+			<if test="description !=null">
+				description,
+			</if>
+			<if test="remark !=null">
+				remark,
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="value">
+		<trim suffixOverrides=",">
+			<if test="inventoryNum !=null">
+				#{inventoryNum},
+			</if>
+			<if test="name !=null">
+				#{name},
+			</if>
+			<if test="description !=null">
+				#{description},
+			</if>
+			<if test="remark !=null">
+				#{remark},
+			</if>
+		</trim>
+	</sql>
+	
+	<insert id="addData" parameterType="com.frasergen.entity.Goods"
+	useGeneratedKeys="true" keyProperty="id">
+		insert into
+		inventory
+		<include refid="key"></include>
+		values
+		<include refid="value"></include>
+	</insert>
+	
+	<update id="updateData" parameterType="com.frasergen.entity.Goods">
+		update
+		inventory
+		<set>
+			<trim suffixOverrides=",">
+				<if test="inventoryNum !=null">
+					inventoryNum = #{inventoryNum},
+				</if>
+				<if test="name !=null">
+					name = #{name},
+				</if>
+				<if test="description !=null">
+					description = #{description},
+				</if>
+				<if test="remark !=null">
+					remark = #{remark},
+				</if>
+			</trim>
+		</set>
+		where
+		id=#{id}
+	</update>
+	
+	<delete id="deleteData" parameterType="int" > 
+		delete
+		from
+		inventory
+		where
+		id=#{id}
+	</delete>
+	
+	<select id="queryAll" resultType="com.frasergen.entity.Goods">
+		select *
+		from 
+		inventory
+	</select>
+	
+	<select id="queryByPage" resultType="com.frasergen.entity.Goods">
+		select *
+		from 
+		inventory
+	</select>
+	
+	<select id="queryById" parameterType="int" resultType="com.frasergen.entity.Goods">
+		select *
+		from
+		inventory
+		where
+		id=#{id}
+	</select>
+	
+	<select id="queryByParam" parameterType="hashmap" resultType="com.frasergen.entity.Goods">
+		select *
+		from 
+		inventory
+		<where>
+			<trim prefixOverrides="and" suffixOverrides="">
+				<if test="name !=null and name !=''">
+					name like CONCAT('%','#{name}','%')
+				</if>
+				<if test=" description !=null and  description !=''">
+					and description like CONCAT('%','#{description}','%')
+				</if>
+				<if test=" remark !=null and  remark !=''">
+					and remark like CONCAT('%','#{remark}','%')
+				</if>
+			</trim>
+		</where>
+	</select>
+</mapper>

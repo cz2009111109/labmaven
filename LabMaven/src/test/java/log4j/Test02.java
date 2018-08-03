@@ -16,6 +16,7 @@ import com.frasergen.entity.PurchaseOrder;
 import com.frasergen.entity.Share;
 import com.frasergen.entity.User;
 import com.frasergen.service.CommodityService;
+import com.frasergen.util.CustomerContextHolder;
 import com.frasergen.util.PageUtil;
 
 
@@ -36,9 +37,11 @@ public class Test02 {
 	
 	@Autowired
 	CommodityDao dao;
-	//@Test
+	@Test
 	public void userDaoTest(){
 		System.out.println("test开始");
+		//CustomerContextHolder.setCustomerType("dataSourceOne");
+		
 		List<User> list=userdao.queryAll();
 		for(User user:list){
 			System.out.println(user.getName());
@@ -52,7 +55,7 @@ public class Test02 {
 		System.out.println("test结束");
 	}
 	
-	@Test
+	/*@Test
 	public void commodityTest(){
 		System.out.println("test开始");
 		PageUtil pg=new PageUtil();
@@ -64,5 +67,5 @@ public class Test02 {
 		}
 		System.out.println("********************");
 		System.out.println("test结束");
-	}
+	}*/
 }

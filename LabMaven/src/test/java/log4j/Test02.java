@@ -21,7 +21,7 @@ import com.frasergen.util.PageUtil;
 
 
 @RunWith(SpringJUnit4ClassRunner.class) 
-@ContextConfiguration(locations = {"classpath:spring-mybatis.xml"}) 
+@ContextConfiguration(locations = {"classpath:spring-mybatis2.xml"}) 
 public class Test02 {
 	
 	

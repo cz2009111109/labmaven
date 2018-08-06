@@ -17,7 +17,7 @@
 	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:spring-mybatis.xml</param-value>
+		<param-value>classpath*:spring-mybatis2.xml</param-value>
 	</context-param>
 	
 	<!-- Spring Secutiry4.1的过滤器链配置 -->

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.frasergen.dao.ItemDao">
 	  <sql id="key">
 		<trim suffixOverrides=",">
@@ -231,9 +232,9 @@
 		<include refid="value"></include>
 	</insert>
 
-	<update id="updateData" parameterType="">
+	<update id="updateData" parameterType="com.frasergen.entity.Item">
 		update
-		
+		item
 		<set>
 			<trim suffixOverrides="," >
 				<if test=" customer !=null">
@@ -347,4 +348,9 @@
 		itemID=#{itemID}
 	</update>
 	
+	<select id="queryAll">
+		select *
+		from
+		item
+	</select>
 </mapper>

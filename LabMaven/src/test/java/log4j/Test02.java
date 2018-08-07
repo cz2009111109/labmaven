@@ -9,15 +9,16 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.frasergen.dao.CommodityDao;
+import com.frasergen.dao.ItemDao;
 import com.frasergen.dao.PurchaseOrderDao;
 import com.frasergen.dao.UserDao;
-import com.frasergen.entity.Commodity;
+import com.frasergen.entity.Item;
 import com.frasergen.entity.PurchaseOrder;
 import com.frasergen.entity.Share;
 import com.frasergen.entity.User;
 import com.frasergen.service.CommodityService;
-import com.frasergen.util.CustomerContextHolder;
-import com.frasergen.util.PageUtil;
+import com.frasergen.util.MultipleDataSource;
+
 
 
 @RunWith(SpringJUnit4ClassRunner.class) 
@@ -37,6 +38,9 @@ public class Test02 {
 	
 	@Autowired
 	CommodityDao dao;
+	
+	@Autowired
+	ItemDao itemDao;
 	@Test
 	public void userDaoTest(){
 		System.out.println("test开始");
@@ -53,6 +57,12 @@ public class Test02 {
 		System.out.println("********************");
 		System.out.println(share.toString());
 		System.out.println("test结束");
+		MultipleDataSource.setDataSourceKey("dataSourceTwo");
+		List<Item> list2= itemDao.queryAll();
+		for(Item item:list2){
+			System.out.println(item.getCustomer());
+		}
+		
 	}
 	
 	/*@Test

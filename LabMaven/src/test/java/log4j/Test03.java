@@ -57,7 +57,7 @@ public class Test03 {
 		System.out.println("********************");
 		System.out.println(share.toString());
 		System.out.println("test结束");
-		
+
 	}
 	
 	/*@Test

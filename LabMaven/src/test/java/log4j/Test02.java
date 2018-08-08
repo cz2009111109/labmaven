@@ -63,6 +63,18 @@ public class Test02 {
 			System.out.println(item.getCustomer());
 		}
 		
+		
+		MultipleDataSource.setDataSourceKey("dataSourceOne");
+		System.out.println("test开始");
+		//CustomerContextHolder.setCustomerType("dataSourceOne");
+		
+		List<User> list3=userdao.queryAll();
+		for(User user:list3){
+			System.out.println(user.getName());
+			
+		}
+		System.out.println("test结束");
+		
 	}
 	
 	/*@Test

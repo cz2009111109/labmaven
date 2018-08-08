@@ -348,7 +348,7 @@
 		itemID=#{itemID}
 	</update>
 	
-	<select id="queryAll">
+	<select id="queryAll" resultType="com.frasergen.entity.Item">
 		select *
 		from
 		item

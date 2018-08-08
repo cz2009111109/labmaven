@@ -31,7 +31,7 @@
      <bean id="dataSourceTwo" class="org.apache.commons.dbcp.BasicDataSource"  
         destroy-method="close">  
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />  
-        <property name="url" value="jdbc:mysql://localhost:3306/item?useUnicode=true&amp;characterEncoding=UTF-8"/>  
+        <property name="url" value="jdbc:mysql://localhost:3306/myitem?useUnicode=true&amp;characterEncoding=UTF-8"/>  
         <property name="username" value="root" />  
         <property name="password" value="root"/> 
     </bean> 
@@ -58,10 +58,12 @@
         <!-- 自动扫描*.xml文件 -->  
         <property name="mapperLocations" value="classpath:com/frasergen/mapper/*Mapper.xml"></property>
     </bean>  
-    <bean class="org.mybatis.spring.SqlSessionTemplate">  
-       <constructor-arg ref="sqlSessionFactory"/>  
+ 
+  	 <!-- DAO接口所在包名，Spring会自动查找其下的类 -->  
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
+        <property name="basePackage" value="com.frasergen.dao" />  
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>  
     </bean>  
-  	 <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
   	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
   	
     <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->  

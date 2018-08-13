@@ -77,17 +77,5 @@ public class Test02 {
 		
 	}
 	
-	/*@Test
-	public void commodityTest(){
-		System.out.println("test开始");
-		PageUtil pg=new PageUtil();
-		List<Commodity> list=commodityService.queryAll(pg).getList();
-		System.out.println(list.size());
-		for(Commodity commodity:list){
-			System.out.println(commodity.getGoodsname());
-			
-		}
-		System.out.println("********************");
-		System.out.println("test结束");
-	}*/
+
 }

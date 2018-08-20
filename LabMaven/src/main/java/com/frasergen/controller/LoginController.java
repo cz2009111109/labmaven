@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,10 +36,14 @@ public class LoginController {
 		@Autowired
 		private AuthenticationManager myAuthenticationManager;
 		
+		@CrossOrigin
 		@ResponseBody
-		@RequestMapping(value="/login")
-		public Share loginPage(@RequestParam(defaultValue="") String name,@RequestParam(defaultValue="") String password,HttpServletRequest request){
+		@RequestMapping(value="/login",method=RequestMethod.POST)
+		public Share loginPage(HttpServletRequest request){
+			String name =request.getParameter("name");
+			String password=request.getParameter("password");
 			User user=new User();
+			System.out.println(name+":"+password);
 			user.setName(name);
 			user.setPassword(password);
 			user.setState(0);

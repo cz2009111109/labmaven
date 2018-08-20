@@ -1,20 +1,21 @@
 function Login(){
 	var name=$("#name").val();
 	var password=$("#password").val();
+	var params={};
 	$.ajax({
-		type:"get",
+		type:"post",
 		url:"login",
-		data:'name='+name+'&password='+password,
-		dataType:"json",
+		data:{"name":name,"password":password},
+		//dataType:"json",
 		async:true,
-		contentType:  'application/json',
+		contentType:  'application/x-www-form-urlencoded;charset=utf-8',
 		cache: 'false',
 		timeout: '1000',
 		error: er,
 		success: succ
 	});
-	function er(){
-		alert("登录失败");
+	function er(err){
+		alert("登录失败"+err);
 	}
 	function succ(data){
 		if(data==null){
